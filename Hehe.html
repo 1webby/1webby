@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Interaction</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.5s;
+        }
+        #yes {
+            transition: all 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ang Ganda mo</h1>
+    <p>Pwede pa kiss?</p>
+    <div class="buttons">
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+    </div>
+    <p id="message"></p>
+
+    <script>
+        let growing = false;
+
+        document.getElementById("no").addEventListener("click", function() {
+            const yesButton = document.getElementById("yes");
+            if (!growing) {
+                growing = true;
+                const growInterval = setInterval(() => {
+                    const currentWidth = yesButton.offsetWidth;
+                    const currentHeight = yesButton.offsetHeight;
+                    yesButton.style.width = currentWidth + 10 + "px";
+                    yesButton.style.height = currentHeight + 10 + "px";
+
+                    if (currentWidth >= window.innerWidth && currentHeight >= window.innerHeight) {
+                        clearInterval(growInterval);
+                    }
+                }, 50);
+            }
+        });
+
+        document.getElementById("yes").addEventListener("click", function() {
+            if (growing) {
+                document.getElementById("message").innerText = "iloveyouuuu";
+            }
+        });
+    </script>
+</body>
+</html>
